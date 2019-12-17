@@ -10,7 +10,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity()  {
 
     lateinit var tx: FragmentTransaction
     var fmanager: FragmentManager =  supportFragmentManager
@@ -18,6 +19,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+<<<<<<< HEAD
+=======
+
+        setSupportActionBar(toolbar)
+
+>>>>>>> 067256c89314f0838de89e70bd051358a9a63845
 
         setSupportActionBar(toolbar)
 
