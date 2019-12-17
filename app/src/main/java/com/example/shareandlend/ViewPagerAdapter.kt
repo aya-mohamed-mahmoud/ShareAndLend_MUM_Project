@@ -3,6 +3,7 @@ package com.example.shareandlend
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentTransaction
 
 class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
@@ -22,6 +23,7 @@ class ViewPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
     }
 
     fun addFragment(fragment: Fragment, title: String) {
+        println("addFragment")
         mFragmentList.add(fragment)
         mFragmentTitleList.add(title)
     }

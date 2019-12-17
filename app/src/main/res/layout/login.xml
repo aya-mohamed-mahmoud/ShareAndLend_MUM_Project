@@ -10,13 +10,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
         android:text="Login" />
 
     <TextView
         android:id="@+id/name_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
         android:text="Name" />
 
     <EditText
@@ -24,12 +30,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Your Name"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorPrimary"
+        android:textCursorDrawable="@null"
         android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/password_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
         android:text="Password" />
 
     <EditText
@@ -37,20 +52,37 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Your Password"
+        android:padding="10dp"
+        android:textSize="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@color/colorPrimary"
+        android:textCursorDrawable="@null"
         android:inputType="textPassword" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"></Space>
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="#FFFF"
+        android:background="@color/colorPrimary"
         android:text="Login" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"></Space>
 
     <Button
         android:id="@+id/create_new_account_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="#FFFF"
+        android:background="@color/colorPrimary"
         android:text="Create New Account" />
 
 </LinearLayout>
