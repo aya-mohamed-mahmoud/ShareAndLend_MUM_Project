@@ -1,5 +1,6 @@
 package com.example.shareandlend
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -43,7 +44,7 @@ class CreateAccountActivity : AppCompatActivity() {
         return inValid
     }
 
-    fun onClickButton(view: View) {
+    fun onClickCreateButton(view: View) {
         if (!validateInsertedData()) {
             val user = User()
             user.name = user_name.text.toString()
@@ -56,26 +57,26 @@ class CreateAccountActivity : AppCompatActivity() {
             firestore.collection(USERS_COLLECTION).document(user.email.toString()).get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.data != null) {
-                        Toast.makeText(
-                            this,
-                            "User already registered with this email",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this, "User already registered with this email", Toast.LENGTH_SHORT).show()
                     } else {
                         firestore.collection(USERS_COLLECTION).document(user.email.toString())
                             .set(user).addOnCompleteListener { task ->
                                 if (task.isSuccessful) {
-                                    Toast.makeText(
-                                        this,
-                                        "User add successfully ! ",
-                                        Toast.LENGTH_SHORT
-                                    )
-                                        .show()
+                                    Toast.makeText(this, "User add successfully ! ", Toast.LENGTH_SHORT).show()
+                                    goToLoginActivity()
                                 }
-
                             }
                     }
                 }
         }
+    }
+
+    fun onClickGoToLoginButton(v: View){
+        goToLoginActivity()
+    }
+
+    private fun goToLoginActivity(){
+        val intent = Intent(this,LoginActivity::class.java)
+        startActivity(intent)
     }
 }
