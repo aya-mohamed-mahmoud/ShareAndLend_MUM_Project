@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" android:padding="30dp">
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    >
 
 
     <TextView
@@ -11,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
+        android:layout_margin="5dp"
         android:text="Create New Account" />
 
 
@@ -18,18 +21,21 @@
         android:id="@+id/user_name_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="User Name" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Your Name" />
+        android:hint="Enter Your Name"
+        android:requiresFadingEdge="vertical"/>
 
     <TextView
         android:id="@+id/password_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="Password" />
 
     <EditText
@@ -37,38 +43,60 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Your Password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:requiresFadingEdge="vertical"/>
 
     <TextView
         android:id="@+id/email_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_margin="5dp"
+        android:text="Email" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter You Email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:requiresFadingEdge="vertical"/>
+
+    <TextView
+        android:id="@+id/pho_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Phone Number" />
+
+    <EditText
+        android:id="@+id/phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Your Phone Number"
+        android:inputType="number"
+        android:requiresFadingEdge="vertical"/>
 
     <TextView
         android:id="@+id/dorm_number_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Your Dorm Number" />
+        android:layout_margin="5dp"
+        android:text="Dorm Number" />
 
     <EditText
         android:id="@+id/dorm_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Your Dorm Number"
-        android:inputType="number" />
+        android:inputType="number"
+        android:requiresFadingEdge="vertical"/>
 
     <Button
         android:id="@+id/create_new_account_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:onClick="onClickButton"
         android:text="create" />
 </LinearLayout>

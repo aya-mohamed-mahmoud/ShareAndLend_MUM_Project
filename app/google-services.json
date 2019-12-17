@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "345168638843",
+    "firebase_url": "https://shareandlend.firebaseio.com",
+    "project_id": "shareandlend",
+    "storage_bucket": "shareandlend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345168638843:android:89a37ad1d96d13ab55c3de",
+        "android_client_info": {
+          "package_name": "com.example.shareandlend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345168638843-vbvc73u09i2u74gnnr0oatahi5g2htik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shareandlend",
+            "certificate_hash": "a0c9bbaade4a92f4b318a301bbaa8afd5f6bd7c8"
+          }
+        },
+        {
+          "client_id": "345168638843-kgr636o48ofneeairdct6oi8virmhurh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCH9oEZ11YHj1aEkpNHAzE-5EyVfxVnr54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345168638843-kgr636o48ofneeairdct6oi8virmhurh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
