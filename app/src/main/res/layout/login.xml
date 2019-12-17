@@ -16,20 +16,20 @@
         android:text="Login" />
 
     <TextView
-        android:id="@+id/name_tv"
+        android:id="@+id/email_lgn_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:padding="10dp"
         android:textSize="20dp"
         android:textColor="@color/colorAccent"
-        android:text="Name" />
+        android:text="Email" />
 
     <EditText
-        android:id="@+id/name"
+        android:id="@+id/email_lgn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Your Name"
+        android:hint="Enter Your Email"
         android:padding="10dp"
         android:textSize="20dp"
         android:backgroundTint="@color/colorPrimary"
@@ -48,7 +48,7 @@
         android:text="Password" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/password_lgn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter Your Password"
@@ -70,6 +70,7 @@
         android:layout_gravity="center"
         android:textColor="#FFFF"
         android:background="@color/colorPrimary"
+        android:onClick="onClickLoginButton"
         android:text="Login" />
 
     <Space
