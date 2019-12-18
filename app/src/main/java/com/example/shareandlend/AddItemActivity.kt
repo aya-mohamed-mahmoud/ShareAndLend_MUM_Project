@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shareandlend.model.Item
 import com.example.shareandlend.model.ShareType
+import com.example.shareandlend.model.User
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.add_item.*
 import java.text.SimpleDateFormat
@@ -21,10 +22,15 @@ class AddItemActivity : AppCompatActivity() {
     val ITEMS_COLLECTION: String = "Items"
     lateinit var from: EditText
     lateinit var to: EditText
+    lateinit  var loggedInUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_item)
+
+        //get user from firebase
+        loggedInUser = intent.getSerializableExtra("user") as User
+
         firestore = FirebaseFirestore.getInstance()
         from = findViewById(R.id.from)
         from.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
@@ -106,8 +112,9 @@ class AddItemActivity : AppCompatActivity() {
             item.availableToDate = format.parse(to.text.toString())
             item.fees = fees.text.toString().toDouble()
             item.itemDescription = item_desc.text.toString()
-            item.itemImagePath = "drwable"
+           // item.itemImagePath = "drwable"
             item.type = ShareType.SHARE.value
+            item.user = loggedInUser
 
             firestore.collection(ITEMS_COLLECTION).document(item.itemName.toString()).get()
                 .addOnSuccessListener { documentSnapshot ->
@@ -129,6 +136,7 @@ class AddItemActivity : AppCompatActivity() {
 
     fun goToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("user",loggedInUser)
         startActivity(intent)
     }
 
