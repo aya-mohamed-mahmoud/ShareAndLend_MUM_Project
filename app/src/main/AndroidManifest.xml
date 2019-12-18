@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AddItem"></activity>
+        <activity android:name=".AddItemActivity"></activity>
         <activity android:name=".CreateAccountActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>

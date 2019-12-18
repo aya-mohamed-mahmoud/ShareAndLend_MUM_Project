@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/table_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".AddItem">
+    android:padding="5dp"
+    android:stretchColumns="0,1"
+    tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/item_name_tv"
@@ -30,12 +29,9 @@
             android:padding="10dp"
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
-    </LinearLayout>
+    </TableRow>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/item_desc_tv"
@@ -48,20 +44,16 @@
 
         <EditText
             android:id="@+id/item_desc"
-            android:layout_width="match_parent"
+            android:layout_width="159dp"
             android:layout_height="wrap_content"
-            android:hint="Enter Item Name"
-            android:inputType="textPersonName"
             android:padding="10dp"
+            android:hint="Enter Item Description"
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
-    </LinearLayout>
+    </TableRow>
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/from_tv"
@@ -73,27 +65,20 @@
             android:textSize="20dp" />
 
 
-        <DatePicker
+        <EditText
             android:id="@+id/from"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:calendarTextColor="@color/colorPrimary"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner" />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="130dp"></Space>
+            android:layout_width="256dp"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:onClick="fromDatePicker"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
 
-    </LinearLayout>
+    </TableRow>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp"></Space>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/to_tv"
@@ -104,27 +89,21 @@
             android:textColor="@color/colorAccent"
             android:textSize="20dp" />
 
-
-        <DatePicker
+        <EditText
             android:id="@+id/to"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:calendarTextColor="@color/colorPrimary"
-            android:calendarViewShown="false"
-            android:datePickerMode="spinner" />
+            android:layout_width="282dp"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:inputType="textPersonName"
+            android:onClick="toDatePicker"
+            android:padding="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="130dp"></Space>
+    </TableRow>
 
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/fees_tv"
@@ -145,7 +124,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
 
-    </LinearLayout>
+    </TableRow>
 
     <Button
         android:id="@+id/add"
@@ -158,4 +137,4 @@
         android:textColor="#FFFF" />
 
 
-</LinearLayout>
+</TableLayout>
