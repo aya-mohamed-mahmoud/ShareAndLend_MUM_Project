@@ -4,9 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.create_new_account.*
+import com.example.shareandlend.model.User
 import kotlinx.android.synthetic.main.login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -41,6 +40,8 @@ class LoginActivity : AppCompatActivity() {
                     if (documentSnapshot.data != null) {
                         if (documentSnapshot.getString("password") != null && documentSnapshot.getString("password").equals(password_lgn.text.toString())) {
                             val intent = Intent(this, MainActivity::class.java)
+                            val user = documentSnapshot.data as User
+                            intent.putExtra("user",user)
                             startActivity(intent)
                         } else {
                             password_lgn.error = "Wrong password"

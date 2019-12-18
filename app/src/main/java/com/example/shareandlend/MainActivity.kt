@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
+import com.example.shareandlend.model.User
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -15,12 +16,14 @@ class MainActivity : AppCompatActivity()  {
 
     lateinit var tx: FragmentTransaction
     var fmanager: FragmentManager =  supportFragmentManager
-
+    lateinit  var loggedInUser: User
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
+        val intent = getIntent()
+        loggedInUser = intent.getSerializableExtra("user") as User
 
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(AvailableLendItemsFragment(), "Available Lend Items")

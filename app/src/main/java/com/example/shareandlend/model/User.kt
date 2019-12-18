@@ -1,7 +1,9 @@
 package com.example.shareandlend.model
 
+import java.io.Serializable
 
-class User {
+
+class User : Serializable{
 
     var name: String? = null
     var password: String? = null
