@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity()  {
         return when (item.itemId) {
             R.id.action1 ->
             {
-                val intent = Intent(this, AddItem::class.java)
+                val intent = Intent(this, AddItemActivity::class.java)
                 startActivity(intent)
                 true
             }

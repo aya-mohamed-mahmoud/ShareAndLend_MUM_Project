@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Intent
 import android.widget.*
+import com.example.shareandlend.helper.Product
 
 
 class MyAdapter(var context:Context, var productList :Array<Product>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
