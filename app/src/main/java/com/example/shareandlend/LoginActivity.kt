@@ -39,8 +39,7 @@ class LoginActivity : AppCompatActivity() {
             firestore.collection(USERS_COLLECTION).document(email_lgn.text.toString()).get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.data != null) {
-                        if (documentSnapshot.getString("password") != null && documentSnapshot.getString("password").equals(password_lgn.text.toString())
-                        ) {
+                        if (documentSnapshot.getString("password") != null && documentSnapshot.getString("password").equals(password_lgn.text.toString())) {
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                         } else {

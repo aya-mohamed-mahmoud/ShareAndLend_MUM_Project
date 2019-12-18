@@ -3,7 +3,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="logout">logout</string>
+    <string name="AddItem">Add Item</string>
     <string name="viewAllLend">View All Lend</string>
     <string name="viewAllShared">View All Shared</string>
 </resources>

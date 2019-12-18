@@ -28,6 +28,8 @@
             app:tabBackground="@color/colorPrimary"
             app:tabGravity="fill"
             app:tabMode="fixed"
+            app:tabPaddingStart="60dp"
+            app:tabPaddingEnd="50dp"
             app:tabTextColor="@android:color/white" />
     </com.google.android.material.appbar.AppBarLayout>
 

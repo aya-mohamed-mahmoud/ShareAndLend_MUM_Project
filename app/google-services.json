@@ -10,9 +10,9 @@
       "client_info": {
         "mobilesdk_app_id": "1:345168638843:android:89a37ad1d96d13ab55c3de",
         "android_client_info": {
-          "package_name": "com.example.shareandlend"
+          "package_name": "com.example."
         }
-      },
+      },shareandlend
       "oauth_client": [
         {
           "client_id": "345168638843-vbvc73u09i2u74gnnr0oatahi5g2htik.apps.googleusercontent.com",

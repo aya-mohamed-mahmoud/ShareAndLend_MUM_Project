@@ -1,7 +1,5 @@
 package com.example.shareandlend
 
-
-import android.icu.lang.UCharacter.GraphemeClusterBreak.V
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class HomeFragment : Fragment() {
+class AvailableLendItemsFragment : Fragment() {
 
     var layoutManager: RecyclerView.LayoutManager? = null
     var madr: MyAdapter? = null

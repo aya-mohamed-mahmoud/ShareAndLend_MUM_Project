@@ -23,9 +23,8 @@ class MainActivity : AppCompatActivity()  {
         setSupportActionBar(toolbar)
 
         val adapter = ViewPagerAdapter(supportFragmentManager)
-        adapter.addFragment(HomeFragment(), "Home")
-        adapter.addFragment(ShareFragment(), "Share")
-        adapter.addFragment(LendFragment(), "Lend")
+        adapter.addFragment(AvailableLendItemsFragment(), "Available Lend Items")
+        adapter.addFragment(AvailableSharedItemsFragment(), "Available Shared Items")
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
 
@@ -57,7 +56,7 @@ class MainActivity : AppCompatActivity()  {
         return when (item.itemId) {
             R.id.action1 ->
             {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, AddItem::class.java)
                 startActivity(intent)
                 true
             }
