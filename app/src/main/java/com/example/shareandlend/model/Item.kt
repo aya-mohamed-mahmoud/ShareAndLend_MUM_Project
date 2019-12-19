@@ -1,8 +1,9 @@
 package com.example.shareandlend.model
 
+import java.io.Serializable
 import java.util.*
 
- class Item {
+ class Item : Serializable {
 
     var itemName : String? = null
     var itemDescription: String? = null

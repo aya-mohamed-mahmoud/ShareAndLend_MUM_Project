@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.shareandlend.model.Item
 import com.example.shareandlend.model.ShareType
 import com.google.firebase.database.*
+import java.util.*
 import kotlin.collections.ArrayList
 
 class AvailableLendItemsFragment : Fragment() {
@@ -38,8 +39,8 @@ class AvailableLendItemsFragment : Fragment() {
                 // Get Post object and use the values to update the UI
                 for (snapshot in dataSnapshot.children) {
                     item = snapshot.getValue(Item::class.java)
-                    if (item!!.type != null && item!!.type!! == ShareType.LEND.value) {
-                            items.add(item!!)
+                    if (item!!.type != null && item!!.type!! == ShareType.LEND.value && item!!.availableToDate!!.after(Date())) {
+                        items.add(item!!)
 
                     }
                 }

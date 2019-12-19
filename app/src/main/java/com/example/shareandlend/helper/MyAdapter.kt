@@ -18,12 +18,7 @@ class MyAdapter(var context:Context, var productList :Array<Item>) : RecyclerVie
 
         holder.parentlayout.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
-
-            var res = productList[position]
-
-           // intent.putExtra("image", productList[position].image)
-            intent.putExtra("name", productList[position]?.itemName)
-            intent.putExtra("detail",productList[position]?.itemDescription)
+            intent.putExtra("item",productList[position])
             context.startActivity(intent)
         }
     }
