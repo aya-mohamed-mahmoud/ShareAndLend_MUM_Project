@@ -34,11 +34,13 @@ class AvailableLendItemsFragment : Fragment() {
             .addValueEventListener(object : ValueEventListener {
             var item: Item? = Item()
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                items = arrayListOf()
                 // Get Post object and use the values to update the UI
                 for (snapshot in dataSnapshot.children) {
                     item = snapshot.getValue(Item::class.java)
                     if (item!!.type != null && item!!.type!! == ShareType.LEND.value) {
-                        items.add(item!!)
+                            items.add(item!!)
+
                     }
                 }
                 val rview: RecyclerView = view.findViewById(R.id.rv) as RecyclerView
