@@ -47,7 +47,7 @@ class AddItemActivity : AppCompatActivity() {
         val choiceOne = findViewById(R.id.choice1) as RadioButton
 
         choiceOne.setChecked(true)
-        fees.isEnabled =false
+        fees.setText("0")
 
         // Get radio group selected item using on checked change listener
         rg.setOnCheckedChangeListener(
@@ -57,11 +57,10 @@ class AddItemActivity : AppCompatActivity() {
                 if (rg.getCheckedRadioButtonId() != -1) {
                     var radioButton = findViewById(rg.getCheckedRadioButtonId()) as RadioButton
                     selected = radioButton.getText().toString()
-                    if(selected.toString().equals("Share",ignoreCase = true)){
-                        fees.isEnabled =true
-                    }
-                    else
-                        fees.isEnabled =false
+                    if (selected.toString().equals("Share", ignoreCase = true)) {
+                        fees.isEnabled = true
+                    } else
+                        fees.isEnabled = false
 
                 }
             })
@@ -164,9 +163,13 @@ class AddItemActivity : AppCompatActivity() {
             item.itemName = item_name.text.toString()
             item.availableFromDate = format.parse(from.text.toString())
             item.availableToDate = format.parse(to.text.toString())
-            item.fees = fees.text.toString().toDouble()
+            if(fees!!.text!!.toString()!=null){
+                item.fees = fees.text.toString().toDouble()
+            }
+
             item.itemDescription = item_desc.text.toString()
             item.user = loggedInUser
+            item.available = true
 
             if (loggedInUser != null) {
                 databaseReference.child("Items").push().setValue(item)
@@ -176,7 +179,6 @@ class AddItemActivity : AppCompatActivity() {
         }
 
     }
-
 
     fun goToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)

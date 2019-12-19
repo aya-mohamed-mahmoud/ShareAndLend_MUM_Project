@@ -25,18 +25,18 @@
             android:src="@mipmap/ic_launcher" />
 
         <TextView
-            android:id="@+id/tv2"
+            android:id="@+id/tv1"
             android:layout_width="246dp"
             android:layout_height="47dp"
             android:layout_alignParentBottom="true"
             android:layout_marginLeft="20dp"
             android:layout_marginBottom="14dp"
             android:layout_toEndOf="@+id/imageView"
-            android:text="TextView"
+            android:text="name"
             android:textColor="@color/colorPrimary" />
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/tv2"
             android:layout_width="199dp"
             android:layout_height="41dp"
             android:layout_alignTop="@+id/imageView"
@@ -47,7 +47,7 @@
             android:layout_marginEnd="63dp"
             android:layout_marginBottom="2dp"
             android:layout_toEndOf="@+id/imageView"
-            android:text="TextView"
+            android:text="desc"
             android:textColor="@color/colorPrimary"
             android:textSize="18dp" />
 

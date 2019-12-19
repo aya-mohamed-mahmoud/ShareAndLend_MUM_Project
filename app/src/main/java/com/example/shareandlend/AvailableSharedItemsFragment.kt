@@ -38,12 +38,14 @@ class AvailableSharedItemsFragment : Fragment() {
                     // Get Post object and use the values to update the UI
                     for (snapshot in dataSnapshot.children) {
                         item = snapshot.getValue(Item::class.java)
-                        if (item!!.type != null && item!!.type!! == ShareType.SHARE.value && item!!.availableToDate!!.after(Date())) {
-                                items.add(item!!)
+                        item!!.itemId = snapshot.key
 
+                        if(item!!.available!=false && item!!.type==1) {
+
+                            items.add(item!!)
                         }
-                    }
 
+                    }
                     val rview: RecyclerView = view.findViewById(R.id.rv) as RecyclerView
 
                     madr = MyAdapter(context, items.toTypedArray())

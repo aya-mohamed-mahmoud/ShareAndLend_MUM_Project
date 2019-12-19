@@ -14,10 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity()  {
 
-    lateinit var tx: FragmentTransaction
-    var fmanager: FragmentManager =  supportFragmentManager
     lateinit var loggedInUser: User
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

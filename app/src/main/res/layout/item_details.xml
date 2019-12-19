@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,25 +14,18 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"></Space>
-
     <TextView
         android:id="@+id/desc"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/available_date_from_tv"
@@ -48,17 +41,11 @@
             android:id="@+id/available_date_from"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
+    </TableRow>
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/available_date_to_tv"
@@ -74,16 +61,11 @@
             android:id="@+id/available_date_to"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
+    </TableRow>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/contact_me_tv"
@@ -99,20 +81,11 @@
             android:id="@+id/contact_me"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
-    </LinearLayout>
+    </TableRow>
 
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"></Space>
-
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TableRow>
 
         <TextView
             android:id="@+id/fees_tv"
@@ -133,12 +106,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <Space
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"></Space>
+    </TableRow>
 
     <Button
         android:id="@+id/button"
@@ -147,7 +115,7 @@
         android:layout_gravity="center"
         android:background="@color/colorPrimary"
         android:text="Book"
+        android:onClick="bookItem"
         android:textColor="#ffff" />
 
-
-</LinearLayout>
+    </TableLayout>
