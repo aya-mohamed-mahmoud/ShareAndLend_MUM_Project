@@ -34,6 +34,7 @@ class UserSharedItemsActivity : AppCompatActivity() {
                 for (data in dataSnapshot.children) {
 
                     var item = data.getValue(Item::class.java)
+                    item!!.itemId = data.key
 
                     if(item?.type!=null && item!!.type!! == ShareType.SHARE.value){
                         list!!.add(item!!)

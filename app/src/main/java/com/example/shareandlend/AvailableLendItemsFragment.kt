@@ -41,6 +41,7 @@ class AvailableLendItemsFragment : Fragment() {
                 // Get Post object and use the values to update the UI
                 for (snapshot in dataSnapshot.children) {
                     item = snapshot.getValue(Item::class.java)
+                    item!!.itemId = snapshot.key
                     val dateFormat =
                         SimpleDateFormat("dd/MM/yyy")
                     val fromDateStr  = dateFormat.format(item!!.availableFromDate)
@@ -52,7 +53,9 @@ class AvailableLendItemsFragment : Fragment() {
 
                     if (item!!.type != null && item!!.type!! == ShareType.LEND.value ){
                         if(fromFormatedDate.compareTo(nowDate) >= 0 && toFormatedDate.compareTo(nowDate) >= 0) {
-                            items.add(item!!)
+                            if(item!!.available!=false && item!!.type==2) {
+                                items.add(item!!)
+                            }
                         }
                     }
                 }

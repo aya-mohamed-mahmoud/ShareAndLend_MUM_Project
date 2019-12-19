@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shareandlend.model.Item
 import com.example.shareandlend.model.ShareType
@@ -39,14 +40,30 @@ class AddItemActivity : AppCompatActivity() {
 
         firestore = FirebaseFirestore.getInstance()
         from = findViewById(R.id.from)
-        from.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
+        from.setText(SimpleDateFormat("MM-dd-yyyy").format(System.currentTimeMillis()))
         to = findViewById(R.id.to)
-        to.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
+        to.setText(SimpleDateFormat("MM-dd-yyyy").format(System.currentTimeMillis()))
 
         val choiceOne = findViewById(R.id.choice1) as RadioButton
 
         choiceOne.setChecked(true)
+        fees.setText("0")
 
+        // Get radio group selected item using on checked change listener
+        rg.setOnCheckedChangeListener(
+            RadioGroup.OnCheckedChangeListener { group, checkedId ->
+
+                lateinit var selected: String
+                if (rg.getCheckedRadioButtonId() != -1) {
+                    var radioButton = findViewById(rg.getCheckedRadioButtonId()) as RadioButton
+                    selected = radioButton.getText().toString()
+                    if (selected.toString().equals("Share", ignoreCase = true)) {
+                        fees.isEnabled = true
+                    } else
+                        fees.isEnabled = false
+
+                }
+            })
     }
 
     private fun validateInsertedData(): Boolean {
@@ -74,12 +91,12 @@ class AddItemActivity : AppCompatActivity() {
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val myFormat = "dd/MM/yyyy" // mention the format you need
+                val myFormat = "MM-dd-yyyy" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 to.setText(sdf.format(cal.time))
             }
 
-        to.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
+        to.setText(SimpleDateFormat("MM-dd-yyyy").format(System.currentTimeMillis()))
         val dialog = DatePickerDialog(
             this, dateSetListener,
             cal.get(Calendar.YEAR),
@@ -100,12 +117,12 @@ class AddItemActivity : AppCompatActivity() {
                 cal.set(Calendar.MONTH, monthOfYear)
                 cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
 
-                val myFormat = "dd/MM/yyyy" // mention the format you need
+                val myFormat = "MM-dd-yyyy" // mention the format you need
                 val sdf = SimpleDateFormat(myFormat, Locale.US)
                 from.setText(sdf.format(cal.time))
             }
 
-        from.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
+        from.setText(SimpleDateFormat("MM-dd-yyyy").format(System.currentTimeMillis()))
 
         val dialog = DatePickerDialog(
             this, dateSetListener,
@@ -124,32 +141,35 @@ class AddItemActivity : AppCompatActivity() {
 
         // to get selected radio button
         lateinit var selected: String
-        lateinit var radioValue: String
 
         if (rg.getCheckedRadioButtonId() != -1) {
             var radioButton = findViewById(rg.getCheckedRadioButtonId()) as RadioButton
             selected = radioButton.getText().toString()
 
         }
-        radioValue = rg.getCheckedRadioButtonId().toString()
+
         val item = Item()
 
-        if (radioValue != null && radioValue.equals("Share", ignoreCase = true)) {
+        if (selected != null && selected.equals("Share", ignoreCase = true)) {
             item.type = ShareType.SHARE.value
         }
 
-        if (radioValue != null && radioValue.equals("Lend", ignoreCase = true)) {
+        if (selected != null && selected.equals("Lend", ignoreCase = true)) {
             item.type = ShareType.LEND.value
         }
 
-        var format = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+        var format = SimpleDateFormat("MM-dd-yyyy", Locale.US)
         if (!validateInsertedData()) {
             item.itemName = item_name.text.toString()
             item.availableFromDate = format.parse(from.text.toString())
             item.availableToDate = format.parse(to.text.toString())
-            item.fees = fees.text.toString().toDouble()
+            if(fees!!.text!!.toString()!=null){
+                item.fees = fees.text.toString().toDouble()
+            }
+
             item.itemDescription = item_desc.text.toString()
             item.user = loggedInUser
+            item.available = true
 
             if (loggedInUser != null) {
                 databaseReference.child("Items").push().setValue(item)
@@ -159,7 +179,6 @@ class AddItemActivity : AppCompatActivity() {
         }
 
     }
-
 
     fun goToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)

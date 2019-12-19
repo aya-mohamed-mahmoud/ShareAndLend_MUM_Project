@@ -106,6 +106,41 @@
     <TableRow>
 
         <TextView
+            android:id="@+id/type_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Type "
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp" />
+
+        <RadioGroup
+            android:id="@+id/rg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/choice1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share" />
+
+            <RadioButton
+                android:id="@+id/choice2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lend" />
+
+        </RadioGroup>
+
+    </TableRow>
+
+
+    <TableRow>
+
+        <TextView
             android:id="@+id/fees_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -118,46 +153,11 @@
             android:id="@+id/fees"
             android:layout_width="294dp"
             android:layout_height="wrap_content"
-            android:text="0.0"
             android:inputType="number"
             android:padding="10dp"
+            android:hint="Enter Fees"
             android:textColor="@color/colorPrimary"
             android:textSize="20dp" />
-
-    </TableRow>
-
-
-    <TableRow>
-
-        <TextView
-            android:id="@+id/type_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Fees "
-            android:textColor="@color/colorAccent"
-            android:textSize="20dp" />
-
-        <RadioGroup
-            android:id="@+id/rg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/choice1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Share" />
-
-            <RadioButton
-            android:id="@+id/choice2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lend" />
-
-        </RadioGroup>
 
     </TableRow>
 

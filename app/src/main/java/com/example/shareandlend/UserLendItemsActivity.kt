@@ -35,6 +35,7 @@ class UserLendItemsActivity : AppCompatActivity() {
 
                     var item = data.getValue(Item::class.java)
 
+
                     if(item?.type!=null && item!!.type!! == ShareType.LEND.value){
                         list!!.add(item!!)
                     }

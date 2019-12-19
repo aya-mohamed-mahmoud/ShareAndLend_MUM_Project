@@ -23,7 +23,11 @@ class AvailableSharedItemsFragment : Fragment() {
 
     var items: ArrayList<Item> = arrayListOf()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         database = FirebaseDatabase.getInstance().reference
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.available_shared_items_fragment, container, false)
@@ -40,34 +44,41 @@ class AvailableSharedItemsFragment : Fragment() {
                         item = snapshot.getValue(Item::class.java)
                         val dateFormat =
                             SimpleDateFormat("dd/MM/yyy")
-                        val fromDateStr  = dateFormat.format(item!!.availableFromDate)
+                        val fromDateStr = dateFormat.format(item!!.availableFromDate)
                         val fromFormatedDate = dateFormat.parse(fromDateStr)
-                        val toDateStr  = dateFormat.format(item!!.availableToDate)
+                        val toDateStr = dateFormat.format(item!!.availableToDate)
                         val toFormatedDate = dateFormat.parse(toDateStr)
                         val nowDateStr = dateFormat.format(Date())
                         val nowDate = dateFormat.parse(nowDateStr)
 
-                        if (item!!.type != null && item!!.type!! == ShareType.SHARE.value ){
-                            if(fromFormatedDate.compareTo(nowDate) >= 0 && toFormatedDate.compareTo(nowDate) >= 0) {
-                                items.add(item!!)
+                        item!!.itemId = snapshot.key
+                        if (item!!.type != null && item!!.type!! == ShareType.SHARE.value) {
+                            if (fromFormatedDate.compareTo(nowDate) >= 0 && toFormatedDate.compareTo(
+                                    nowDate
+                                ) >= 0
+                            ) {
+                                if (item!!.available != false && item!!.type == 1) {
+
+                                    items.add(item!!)
+                                }
+
                             }
+
                         }
                     }
-
                     val rview: RecyclerView = view.findViewById(R.id.rv) as RecyclerView
 
                     madr = MyAdapter(context, items.toTypedArray())
                     layoutManager = LinearLayoutManager(context)
                     rview?.layoutManager = layoutManager
                     rview?.adapter = madr
-
                 }
 
-                override fun onCancelled(databaseError: DatabaseError) {
+                    override fun onCancelled(databaseError: DatabaseError) {
 
-                }
-            })
-        return view
+                    }
+                })
+                return view
+            }
+
     }
-
-}
