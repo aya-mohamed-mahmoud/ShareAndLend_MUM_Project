@@ -4,6 +4,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="AddItem">Add Item</string>
-    <string name="viewAllLend">View All Lend</string>
-    <string name="viewAllShared">View All Shared</string>
+    <string name="viewAllLend">My Lend List</string>
+    <string name="viewAllShared">My Shared List</string>
+    <string name="logout">Logout</string>
 </resources>

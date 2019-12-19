@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shareandlend.model.Item
 import com.example.shareandlend.model.ShareType
@@ -22,7 +21,6 @@ import java.util.*
 class AddItemActivity : AppCompatActivity() {
 
     lateinit var firestore: FirebaseFirestore
-    val ITEMS_COLLECTION: String = "Items"
     lateinit var from: EditText
     lateinit var to: EditText
     var loggedInUser: User? = User()
@@ -45,28 +43,38 @@ class AddItemActivity : AppCompatActivity() {
         to = findViewById(R.id.to)
         to.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
 
+        val choiceOne = findViewById(R.id.choice1) as RadioButton
+
+        choiceOne.setChecked(true)
+
+
     }
 
 
     private fun validateInsertedData(): Boolean {
         var inValid = false
+
         if (item_name.text == null || !item_name.text.isNotBlank()) {
             inValid = true
             item_name.error = "Please insert item name"
         }
-        if (fees.text == null || !fees.text.isNotBlank()) {
+
+        if (item_desc.text == null || !fees.text.isNotBlank()) {
             inValid = true
-            fees.error = "Please insert fees"
+            item_desc.error = "Please insert item description"
         }
+
+//        if (fees.text == null || !fees.text.isNotBlank()) {
+//            inValid = true
+//            fees.error = "Please insert fees"
+//        }
+
+
         return inValid
     }
 
     fun toDatePicker(view: View) {
         var cal = Calendar.getInstance()
-
-        var today = System.currentTimeMillis() - 1000;
-
-
         val dateSetListener =
             DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
@@ -79,7 +87,6 @@ class AddItemActivity : AppCompatActivity() {
             }
 
         to.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
-
         val dialog = DatePickerDialog(
             this, dateSetListener,
             cal.get(Calendar.YEAR),
@@ -119,18 +126,22 @@ class AddItemActivity : AppCompatActivity() {
         println("addItem")
 
         // to get selected radio button
-        val selectedId = rg.getCheckedRadioButtonId()
+        lateinit var selected: String
+        lateinit var radioValue: String
 
-        var radioButton = findViewById(selectedId) as RadioButton
+        if (rg.getCheckedRadioButtonId() != -1) {
+            var radioButton = findViewById(rg.getCheckedRadioButtonId()) as RadioButton
+            selected = radioButton.getText().toString()
 
-        var selected = radioButton.getText().toString()
+        }
+        radioValue = rg.getCheckedRadioButtonId().toString()
         val item = Item()
 
-        if (selected.toString().equals("Share", ignoreCase = true)) {
+        if (radioValue != null && radioValue.equals("Share", ignoreCase = true)) {
             item.type = ShareType.SHARE.value
         }
 
-        if (selected.toString().equals("Lend", ignoreCase = true)) {
+        if (radioValue != null && radioValue.equals("Lend", ignoreCase = true)) {
             item.type = ShareType.LEND.value
         }
 
@@ -141,15 +152,15 @@ class AddItemActivity : AppCompatActivity() {
             item.availableToDate = format.parse(to.text.toString())
             item.fees = fees.text.toString().toDouble()
             item.itemDescription = item_desc.text.toString()
-            // item.itemImagePath = "drwable"
-            item.type = ShareType.SHARE.value
             item.user = loggedInUser
 
             if (loggedInUser != null) {
                 databaseReference.child("Items").push().setValue(item)
             }
+
+            goToMainActivity()
         }
-        goToMainActivity()
+
     }
 
 
