@@ -36,13 +36,11 @@ class AvailableSharedItemsFragment : Fragment() {
                     for (snapshot in dataSnapshot.children) {
                         item = snapshot.getValue(Item::class.java)
                         if (item!!.type != null && item!!.type!! == ShareType.SHARE.value) {
-                            if (!items.contains(item!!)) {
-                                items.add(item!!)
-                            }
+                            items.add(item!!)
                         }
                     }
 
-
+                    val rview: RecyclerView = view.findViewById(R.id.rv) as RecyclerView
 
                     madr = MyAdapter(context, items.toTypedArray())
                     layoutManager = LinearLayoutManager(context)

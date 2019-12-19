@@ -2,7 +2,7 @@ package com.example.shareandlend.model
 
 import java.util.*
 
-class Item {
+ class Item {
 
     var itemName : String? = null
     var itemDescription: String? = null
@@ -13,7 +13,6 @@ class Item {
     var type: Int? = null
 
     constructor()
-
     constructor(itemName : String, itemDescription: String, availableFromDate : Date, availableToDate : Date, user: User, fees: Double, type: Int){
         this.itemName = itemName
         this.itemDescription = itemDescription
@@ -23,6 +22,7 @@ class Item {
         this.fees = fees
         this.type = type
     }
+
 
 
 }

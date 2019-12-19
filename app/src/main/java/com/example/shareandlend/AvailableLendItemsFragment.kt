@@ -28,7 +28,7 @@ class AvailableLendItemsFragment : Fragment() {
 
         val context = inflater.context
         
-        val rview: RecyclerView = view.findViewById(R.id.rv) as RecyclerView
+
 
         database.child("Items")
             .addValueEventListener(object : ValueEventListener {
@@ -38,12 +38,10 @@ class AvailableLendItemsFragment : Fragment() {
                 for (snapshot in dataSnapshot.children) {
                     item = snapshot.getValue(Item::class.java)
                     if (item!!.type != null && item!!.type!! == ShareType.LEND.value) {
-                        if (!items.contains(item!!)) {
-                            items.add(item!!)
-                        }
+                        items.add(item!!)
                     }
                 }
-
+                val rview: RecyclerView = view.findViewById(R.id.rv) as RecyclerView
 
 
                 madr = MyAdapter(context, items.toTypedArray())
