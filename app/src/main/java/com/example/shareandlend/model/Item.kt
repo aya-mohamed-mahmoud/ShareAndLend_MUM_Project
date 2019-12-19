@@ -5,7 +5,7 @@ import java.util.*
 class Item {
 
     var itemName : String? = null
-    var itemImagePath : Int? = null
+    //var itemImagePath : Int? = null
     var itemDescription: String? = null
     var availableFromDate : Date? = null
     var availableToDate : Date? = null

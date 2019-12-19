@@ -21,16 +21,13 @@ class UserSharedItemsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.user_shared_items)
 
-        val rview: RecyclerView = findViewById(R.id.recycler_view) as RecyclerView
+        databaseReference = FirebaseDatabase.getInstance().reference.child("Items")
 
-        databaseReference = FirebaseDatabase.getInstance().reference
-
-        val postListener = object : ValueEventListener {
+        databaseReference.addValueEventListener(object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 // Get item object and use the values to update the UI
-                val item = dataSnapshot.getValue(Item::class.java)
 
                 for (data in dataSnapshot.children) {
 
@@ -38,6 +35,8 @@ class UserSharedItemsActivity : AppCompatActivity() {
                     Toast.makeText(this@UserSharedItemsActivity, "heeeeeeey", Toast.LENGTH_SHORT).show()
                     list.add(item)
                 }
+
+                val rview: RecyclerView = findViewById(R.id.recycler_view) as RecyclerView
 
                 madr = MyAdapter(this@UserSharedItemsActivity, list)
 
@@ -56,13 +55,8 @@ class UserSharedItemsActivity : AppCompatActivity() {
 
 
             }
-        }
-
-        databaseReference.addValueEventListener(postListener)
+        })
 
     }
 
 }
-
-
-

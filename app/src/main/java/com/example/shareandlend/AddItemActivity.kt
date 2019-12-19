@@ -5,11 +5,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
+import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shareandlend.model.Item
 import com.example.shareandlend.model.ShareType
 import com.example.shareandlend.model.User
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.add_item.*
 import java.text.SimpleDateFormat
@@ -22,7 +25,10 @@ class AddItemActivity : AppCompatActivity() {
     val ITEMS_COLLECTION: String = "Items"
     lateinit var from: EditText
     lateinit var to: EditText
-    lateinit  var loggedInUser: User
+    var loggedInUser: User? = User()
+
+    lateinit var databaseReference: DatabaseReference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,11 +37,14 @@ class AddItemActivity : AppCompatActivity() {
         //get user from firebase
         loggedInUser = intent.getSerializableExtra("user") as User
 
+        databaseReference = FirebaseDatabase.getInstance().reference
+
         firestore = FirebaseFirestore.getInstance()
         from = findViewById(R.id.from)
         from.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
         to = findViewById(R.id.to)
         to.setText(SimpleDateFormat("dd/MM/yyyy").format(System.currentTimeMillis()))
+
     }
 
 
@@ -54,6 +63,10 @@ class AddItemActivity : AppCompatActivity() {
 
     fun toDatePicker(view: View) {
         var cal = Calendar.getInstance()
+
+        var today = System.currentTimeMillis() - 1000;
+
+
         val dateSetListener =
             DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 cal.set(Calendar.YEAR, year)
@@ -104,39 +117,45 @@ class AddItemActivity : AppCompatActivity() {
 
     fun addItem(view: View) {
         println("addItem")
+
+        // to get selected radio button
+        val selectedId = rg.getCheckedRadioButtonId()
+
+        var radioButton = findViewById(selectedId) as RadioButton
+
+        var selected = radioButton.getText().toString()
+        val item = Item()
+
+        if (selected.toString().equals("Share", ignoreCase = true)) {
+            item.type = ShareType.SHARE.value
+        }
+
+        if (selected.toString().equals("Lend", ignoreCase = true)) {
+            item.type = ShareType.LEND.value
+        }
+
         var format = SimpleDateFormat("dd/MM/yyyy", Locale.US)
         if (!validateInsertedData()) {
-            val item = Item()
             item.itemName = item_name.text.toString()
             item.availableFromDate = format.parse(from.text.toString())
             item.availableToDate = format.parse(to.text.toString())
             item.fees = fees.text.toString().toDouble()
             item.itemDescription = item_desc.text.toString()
-           // item.itemImagePath = "drwable"
+            // item.itemImagePath = "drwable"
             item.type = ShareType.SHARE.value
             item.user = loggedInUser
 
-            firestore.collection(ITEMS_COLLECTION).document(item.itemName.toString()).get()
-                .addOnSuccessListener { documentSnapshot ->
-                    firestore.collection(ITEMS_COLLECTION).document(item.itemName.toString())
-                        .set(item).addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                Toast.makeText(
-                                    this,
-                                    "Item Added Successfully ! ",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                                goToMainActivity()
-                            }
-                        }
-                }
+            if (loggedInUser != null) {
+                databaseReference.child("Items").push().setValue(item)
+            }
         }
+        goToMainActivity()
     }
 
 
     fun goToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("user",loggedInUser)
+        intent.putExtra("user", loggedInUser)
         startActivity(intent)
     }
 

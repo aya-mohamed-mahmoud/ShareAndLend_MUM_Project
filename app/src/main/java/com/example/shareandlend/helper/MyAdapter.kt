@@ -41,7 +41,7 @@ class MyAdapter(var context:Context, var productList :ArrayList<Item?>) : Recycl
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         var t1: TextView = itemView.findViewById<TextView>(R.id.tv1)
         var t2: TextView = itemView.findViewById<TextView>(R.id.tv2)
-        var im : ImageView = itemView.findViewById<ImageView>(R.id.imageView)
+       // var im : ImageView = itemView.findViewById<ImageView>(R.id.imageView)
         var parentlayout : RelativeLayout = itemView.findViewById(R.id.playout) as RelativeLayout
     }
 
