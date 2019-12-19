@@ -40,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
                     if (documentSnapshot.data != null) {
                         if (documentSnapshot.getString("password") != null && documentSnapshot.getString("password").equals(password_lgn.text.toString())) {
                             val intent = Intent(this, MainActivity::class.java)
-                            val user = documentSnapshot.data as User
+                            val user = documentSnapshot.toObject(User::class.java)
                             intent.putExtra("user",user)
                             startActivity(intent)
                         } else {

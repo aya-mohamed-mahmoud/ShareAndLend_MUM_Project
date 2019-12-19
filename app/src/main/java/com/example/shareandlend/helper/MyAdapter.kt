@@ -8,14 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import android.content.Intent
 import android.widget.*
 import com.example.shareandlend.helper.Product
+import com.example.shareandlend.model.Item
 
 
-class MyAdapter(var context:Context, var productList :Array<Product>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
+class MyAdapter(var context:Context, var productList :Array<Item>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.im.setImageResource(productList[position].image)
-        holder.t1.text = productList[position].title
-        holder.t2.text = productList[position].color
+        holder.im.setImageResource(R.drawable.iphone11)
+        holder.t1.text = productList[position].itemName
+        holder.t2.text = productList[position].itemDescription
 
         holder.parentlayout.setOnClickListener {
             val intent = Intent(context, DetailActivity::class.java)
@@ -23,9 +24,9 @@ class MyAdapter(var context:Context, var productList :Array<Product>) : Recycler
             var res = productList[position]
 
             Toast.makeText(context," $res clicked",Toast.LENGTH_LONG).show()
-            intent.putExtra("image", productList[position].image)
-            intent.putExtra("name", productList[position].title)
-            intent.putExtra("detail",productList[position].description)
+            intent.putExtra("image", R.drawable.iphone11)
+            intent.putExtra("name", productList[position].itemName)
+            intent.putExtra("detail",productList[position].itemDescription)
             context.startActivity(intent)
         }
     }
