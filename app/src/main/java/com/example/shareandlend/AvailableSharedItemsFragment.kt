@@ -23,7 +23,7 @@ class AvailableSharedItemsFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         database = FirebaseDatabase.getInstance().reference
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.available_shared_items_fragment, container, false)
 
         val context = inflater.context
         val rview: RecyclerView = view.findViewById(R.id.rv) as RecyclerView
@@ -57,7 +57,5 @@ class AvailableSharedItemsFragment : Fragment() {
             })
         return view
     }
-
-
 
 }

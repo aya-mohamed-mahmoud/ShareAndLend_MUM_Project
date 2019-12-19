@@ -1,8 +1,6 @@
 package com.example.shareandlend
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shareandlend.model.Item
 import com.example.shareandlend.model.ShareType
-import com.example.shareandlend.model.User
 import com.google.firebase.database.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class AvailableLendItemsFragment : Fragment() {
@@ -25,12 +21,10 @@ class AvailableLendItemsFragment : Fragment() {
 
     var items : ArrayList<Item> = arrayListOf()
 
-    override fun onCreateView(
-
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         database = FirebaseDatabase.getInstance().reference
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.available_lend_items_fragment, container, false)
 
         val context = inflater.context
         
@@ -62,7 +56,6 @@ class AvailableLendItemsFragment : Fragment() {
 
             }
         })
-
 
         return view
     }

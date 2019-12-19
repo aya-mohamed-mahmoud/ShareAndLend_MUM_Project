@@ -1,5 +1,4 @@
 package com.example.shareandlend
-
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import android.content.Intent
 import android.widget.*
-import com.example.shareandlend.helper.Product
 import com.example.shareandlend.model.Item
 
 
@@ -23,10 +21,9 @@ class MyAdapter(var context:Context, var productList :Array<Item>) : RecyclerVie
 
             var res = productList[position]
 
-            Toast.makeText(context," $res clicked",Toast.LENGTH_LONG).show()
-            intent.putExtra("image", R.drawable.iphone11)
-            intent.putExtra("name", productList[position].itemName)
-            intent.putExtra("detail",productList[position].itemDescription)
+           // intent.putExtra("image", productList[position].image)
+            intent.putExtra("name", productList[position]?.itemName)
+            intent.putExtra("detail",productList[position]?.itemDescription)
             context.startActivity(intent)
         }
     }

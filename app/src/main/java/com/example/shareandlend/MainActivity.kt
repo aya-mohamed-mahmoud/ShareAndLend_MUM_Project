@@ -16,12 +16,16 @@ class MainActivity : AppCompatActivity()  {
 
     lateinit var tx: FragmentTransaction
     var fmanager: FragmentManager =  supportFragmentManager
-    lateinit  var loggedInUser: User
+    lateinit var loggedInUser: User
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setSupportActionBar(toolbar)
+
+        //get user from firebase
         val intent = getIntent()
         loggedInUser = intent.getSerializableExtra("user") as User
 
@@ -60,11 +64,17 @@ class MainActivity : AppCompatActivity()  {
             R.id.action1 ->
             {
                 val intent = Intent(this, AddItemActivity::class.java)
+                intent.putExtra("user",loggedInUser)
                 startActivity(intent)
                 true
             }
-            R.id.action2 -> true
-            R.id.action3 -> true
+            R.id.action3 -> {
+                val intent = Intent(this, UserSharedItemsActivity::class.java)
+               intent.putExtra("user",loggedInUser)
+                startActivity(intent)
+                true
+            }
+            R.id.action2-> true
 
             else -> super.onOptionsItemSelected(item)
         }
