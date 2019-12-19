@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.EditText
 import com.google.firebase.firestore.FirebaseFirestore
 import com.example.shareandlend.model.User
 import kotlinx.android.synthetic.main.login.*
@@ -12,11 +13,21 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var firestore: FirebaseFirestore
     val USERS_COLLECTION: String = "Users"
+    lateinit var loggedInUser: User
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.login)
         firestore = FirebaseFirestore.getInstance()
+
+        if (intent.getSerializableExtra("user") != null) {
+
+            loggedInUser =intent.getSerializableExtra("user")as User
+
+            email_lgn.setText(loggedInUser.email.toString())
+            password_lgn.setText(loggedInUser.password.toString())
+        }
+
     }
 
     private fun validateInsertedData(): Boolean {
@@ -38,10 +49,13 @@ class LoginActivity : AppCompatActivity() {
             firestore.collection(USERS_COLLECTION).document(email_lgn.text.toString()).get()
                 .addOnSuccessListener { documentSnapshot ->
                     if (documentSnapshot.data != null) {
-                        if (documentSnapshot.getString("password") != null && documentSnapshot.getString("password").equals(password_lgn.text.toString())) {
+                        if (documentSnapshot.getString("password") != null && documentSnapshot.getString(
+                                "password"
+                            ).equals(password_lgn.text.toString())
+                        ) {
                             val intent = Intent(this, MainActivity::class.java)
                             val user = documentSnapshot.toObject(User::class.java)
-                            intent.putExtra("user",user)
+                            intent.putExtra("user", user)
                             startActivity(intent)
                         } else {
                             password_lgn.error = "Wrong password"

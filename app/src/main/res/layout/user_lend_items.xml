@@ -15,11 +15,11 @@
         android:layout_gravity="center"
         android:textSize="20dp"
         android:textColor="@color/colorPrimary"
-        android:text="Your Shared Items" />
+        android:text="Your Lend Items" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_share"
+        android:id="@+id/recycler_view_lend"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -9,7 +9,7 @@ import com.example.shareandlend.model.Item
 import com.example.shareandlend.model.ShareType
 import com.google.firebase.database.*
 
-class UserSharedItemsActivity : AppCompatActivity() {
+class UserLendItemsActivity : AppCompatActivity() {
 
     var layoutManager: RecyclerView.LayoutManager? = null
     var madr: MyAdapter? = null
@@ -21,7 +21,7 @@ class UserSharedItemsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.user_shared_items)
+        setContentView(R.layout.user_lend_items)
 
         databaseReference = FirebaseDatabase.getInstance().reference.child("Items")
 
@@ -35,16 +35,16 @@ class UserSharedItemsActivity : AppCompatActivity() {
 
                     var item = data.getValue(Item::class.java)
 
-                    if(item?.type!=null && item!!.type!! == ShareType.SHARE.value){
+                    if(item?.type!=null && item!!.type!! == ShareType.LEND.value){
                         list!!.add(item!!)
                     }
 
                 }
-                val rview: RecyclerView = findViewById(R.id.recycler_view_share) as RecyclerView
+                val rview: RecyclerView = findViewById(R.id.recycler_view_lend) as RecyclerView
 
-                madr = MyAdapter(this@UserSharedItemsActivity, list!!.toTypedArray())
+                madr = MyAdapter(this@UserLendItemsActivity, list!!.toTypedArray())
 
-                layoutManager = LinearLayoutManager(this@UserSharedItemsActivity)
+                layoutManager = LinearLayoutManager(this@UserLendItemsActivity)
 
                 rview?.layoutManager = layoutManager
 
@@ -54,7 +54,7 @@ class UserSharedItemsActivity : AppCompatActivity() {
 
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Post failed, log a message
-                Toast.makeText(this@UserSharedItemsActivity, "cancel", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@UserLendItemsActivity, "cancel", Toast.LENGTH_SHORT).show()
                 //Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
 
 

@@ -74,7 +74,23 @@ class MainActivity : AppCompatActivity()  {
                 startActivity(intent)
                 true
             }
-            R.id.action2-> true
+            R.id.action2-> {
+                val intent = Intent(this, UserLendItemsActivity::class.java)
+                intent.putExtra("user",loggedInUser)
+                startActivity(intent)
+                true
+
+
+            }
+
+            R.id.action4-> {
+                val intent = Intent(this, LoginActivity::class.java)
+                intent.putExtra("user",loggedInUser)
+                startActivity(intent)
+                true
+
+
+            }
 
             else -> super.onOptionsItemSelected(item)
         }

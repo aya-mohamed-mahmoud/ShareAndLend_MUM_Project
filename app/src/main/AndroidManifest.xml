@@ -13,6 +13,7 @@
         <activity android:name=".AddItemActivity"></activity>
         <activity android:name=".CreateAccountActivity"></activity>
         <activity android:name=".UserSharedItemsActivity"></activity>
+        <activity android:name=".UserLendItemsActivity"></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
