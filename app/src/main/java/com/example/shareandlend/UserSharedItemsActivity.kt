@@ -13,7 +13,8 @@ class UserSharedItemsActivity : AppCompatActivity() {
     var layoutManager: RecyclerView.LayoutManager? = null
     var madr: MyAdapter? = null
 
-    val list: ArrayList<Item?> = ArrayList()
+    val list: ArrayList<Item>? = ArrayList()
+
 
     lateinit var databaseReference: DatabaseReference
 
@@ -33,12 +34,11 @@ class UserSharedItemsActivity : AppCompatActivity() {
 
                     var item = data.getValue(Item::class.java)
                     Toast.makeText(this@UserSharedItemsActivity, "heeeeeeey", Toast.LENGTH_SHORT).show()
-                    list.add(item)
+                    list!!.add(item!!)
                 }
-
                 val rview: RecyclerView = findViewById(R.id.recycler_view) as RecyclerView
 
-                madr = MyAdapter(this@UserSharedItemsActivity, list)
+                madr = MyAdapter(this@UserSharedItemsActivity, list!!.toTypedArray())
 
                 layoutManager = LinearLayoutManager(this@UserSharedItemsActivity)
 
